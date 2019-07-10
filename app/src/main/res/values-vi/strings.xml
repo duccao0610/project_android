@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Project Android</string>
+    <string name="btn_sign_in">ĐĂNG NHẬP</string>
+    <string name="change_language_title">Ngôn ngữ</string>
+    <string name="pass_hint">Mật khẩu</string>
+    <string name="sign_in">Đăng nhập</string>
+    <string name="slogan">Trò chuyện,bạn bè và hơn thế</string>
+</resources>
