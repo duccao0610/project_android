@@ -1,3 +1,28 @@
 <resources>
-    <string name="app_name">Dogs</string>
+    <!--main-->
+    <string name="app_name">Learn_Kotlin</string>
+    <string name="sign_in">SignIn</string>
+    <string name="slogan">Speak,friend,and enter</string>
+    <string name="user_hint">Email</string>
+    <string name="pass_hint">Password</string>
+    <string name="btn_sign_in">SIGN IN</string>
+
+    <!--change language-->
+    <string name="change_language_title">Language</string>
+
+    <string name="language_eng" translatable="false">English</string>
+    <string name="language_vie" translatable="false">Tiếng Việt</string>
+
+    <string-array name="language_names">
+        <item>@string/language_eng</item>
+        <item>@string/language_vie</item>
+    </string-array>
+
+    <string name="language_eng_code" translatable="false">en</string>
+    <string name="language_vie_code" translatable="false">vi</string>
+
+    <string-array name="language_codes">
+        <item>@string/language_eng_code</item>
+        <item>@string/language_vie_code</item>
+    </string-array>
 </resources>
