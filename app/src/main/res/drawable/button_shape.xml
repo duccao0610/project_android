@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <shape>
+            <gradient
+                android:centerColor="@color/center_color_gra"
+                android:endColor="@color/end_color_gra"
+                android:startColor="@color/start_color_gra"
+                android:centerX="35"
+                android:type="linear"
+                android:angle="45"/>
+            <stroke android:width="2dp" android:color="#444444"/>
+            <corners android:radius="3dp"/>
+            <!--<padding-->
+                <!--android:right="@dimen/slogan"-->
+                <!--android:left="@dimen/slogan"-->
+                <!--android:bottom="@dimen/slogan"-->
+                <!--android:top="@dimen/slogan"/>-->
+        </shape>
+    </item>
+
+    <item android:state_pressed="true">
+        <shape>
+            <gradient
+                android:type="linear"
+                android:centerX="35"
+                android:endColor="@color/start_color_gra"
+                android:startColor="@color/end_color_gra"
+                android:centerColor="@color/center_color_gra"
+                android:angle="45"/>
+            <stroke android:width="2dp" android:color="#444444"/>
+            <corners android:radius="3dp"/>
+            <!--<padding-->
+                <!--android:right="@dimen/slogan"-->
+                <!--android:left="@dimen/slogan"-->
+                <!--android:bottom="@dimen/slogan"-->
+                <!--android:top="@dimen/slogan"/>-->
+        </shape>
+    </item>
+</selector>

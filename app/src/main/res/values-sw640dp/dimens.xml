@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="icon_to_top">65.0dp</dimen>
+    <dimen name="sign_in_size">78.0dp</dimen>
+    <dimen name="space_sign_in_to_icon">13.0dp</dimen>
+    <dimen name="slogan">26.0dp</dimen>
+    <dimen name="slogan_to_sign_in">6.5dp</dimen>
+    <dimen name="edt1_to_slogan">130.0dp</dimen>
+    <dimen name="edt_width">338.0dp</dimen>
+    <dimen name="edt_space">26.0dp</dimen>
+    <dimen name="btn_to_edt">65.0dp</dimen>
+    <dimen name="btn_space">26.0dp</dimen>
+</resources>

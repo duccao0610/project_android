@@ -2,7 +2,7 @@
     <!--main-->
     <string name="app_name">Project Android</string>
     <string name="sign_in">SignIn</string>
-    <string name="slogan">Speak,friend,and enter</string>
+    <string name="slogan">Speak,friend,and more</string>
     <string name="user_hint" translatable="false">Email</string>
     <string name="pass_hint">Password</string>
     <string name="btn_sign_in">SIGN IN</string>

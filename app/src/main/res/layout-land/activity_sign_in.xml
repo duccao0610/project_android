@@ -31,34 +31,46 @@
         android:layout_height="wrap_content"/>
 
     <EditText
+        android:paddingRight="@dimen/space_sign_in_to_icon"
+        android:paddingLeft="@dimen/space_sign_in_to_icon"
+        android:paddingBottom="@dimen/space_sign_in_to_icon"
+        android:paddingTop="@dimen/space_sign_in_to_icon"
         android:id="@+id/edit1"
         android:textAlignment="center"
         android:hint="@string/user_hint"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@color/edittext_backg"
         android:layout_width="300dp"
         android:layout_height="wrap_content"/>
 
     <EditText
+        android:paddingRight="@dimen/space_sign_in_to_icon"
+        android:paddingLeft="@dimen/space_sign_in_to_icon"
+        android:paddingBottom="@dimen/space_sign_in_to_icon"
+        android:paddingTop="@dimen/space_sign_in_to_icon"
         android:id="@+id/edit2"
         android:textAlignment="center"
         android:hint="@string/pass_hint"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="6dp"
         android:background="@color/edittext_backg"
         android:layout_width="300dp"
         android:layout_height="wrap_content"/>
 
     <Button
+        android:paddingRight="@dimen/space_sign_in_to_icon"
+        android:paddingLeft="@dimen/space_sign_in_to_icon"
+        android:paddingBottom="@dimen/space_sign_in_to_icon"
+        android:paddingTop="@dimen/space_sign_in_to_icon"
         android:id="@+id/btn_signin"
-        android:textColor="@color/edittext_backg"
-        android:background="@color/btn_backg"
-        android:layout_marginTop="20dp"
+        android:textColor="@color/btn_backg"
+        android:background="@drawable/button_shape"
+        android:layout_marginTop="10dp"
         android:text="@string/btn_sign_in"
         android:layout_width="300dp"
         android:layout_height="wrap_content"/>
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btn_gg"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </com.google.android.gms.common.SignInButton>
