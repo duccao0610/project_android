@@ -6,7 +6,7 @@
     <dimen name="slogan">26.0dp</dimen>
     <dimen name="slogan_to_sign_in">6.5dp</dimen>
     <dimen name="edt1_to_slogan">130.0dp</dimen>
-    <dimen name="edt_width">338.0dp</dimen>
+    <dimen name="edt_width">390.0dp</dimen>
     <dimen name="edt_space">26.0dp</dimen>
     <dimen name="btn_to_edt">65.0dp</dimen>
     <dimen name="btn_space">26.0dp</dimen>

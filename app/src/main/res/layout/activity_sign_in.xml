@@ -1,84 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/wallpaper"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".SignInActivity">
 
     <ImageView
-        android:background="@drawable/circle_shape"
+        android:contentDescription="Icon"
         android:id="@+id/image_view"
-        android:src="@drawable/email"
-        android:layout_marginTop="@dimen/icon_to_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:textColor="@color/edittext_backg"
-        android:textSize="@dimen/sign_in_size"
-        android:layout_marginTop="@dimen/space_sign_in_to_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sign_in"/>
+        android:layout_marginTop="@dimen/icon_to_top"
+        android:background="@drawable/circle_shape"
+        android:src="@drawable/email" />
+
     <TextView
-        android:textSize="@dimen/slogan"
-        android:layout_marginTop="@dimen/slogan_to_sign_in"
-        android:textColor="@color/edittext_backg"
-        android:text="@string/slogan"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_sign_in_to_icon"
+        android:text="@string/sign_in"
+        android:textColor="@color/edittext_backg"
+        android:textSize="@dimen/sign_in_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/slogan_to_sign_in"
+        android:text="@string/slogan"
+        android:textColor="@color/edittext_backg"
+        android:textSize="@dimen/slogan" />
 
     <EditText
-        android:inputType="textEmailAddress"
-        android:paddingRight="@dimen/space_sign_in_to_icon"
-        android:paddingLeft="@dimen/space_sign_in_to_icon"
-        android:paddingBottom="@dimen/space_sign_in_to_icon"
-        android:paddingTop="@dimen/space_sign_in_to_icon"
-        android:background="@drawable/etext_shape"
-        android:id="@+id/edit1"
-        android:textAlignment="center"
         android:hint="@string/user_hint"
-        android:layout_marginTop="@dimen/edt1_to_slogan"
+        android:autofillHints="@string/user_hint"
+        android:id="@+id/edit1"
         android:layout_width="@dimen/edt_width"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/edt1_to_slogan"
+        android:background="@drawable/etext_shape"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="@dimen/space_sign_in_to_icon"
+        android:paddingTop="@dimen/space_sign_in_to_icon"
+        android:paddingRight="@dimen/space_sign_in_to_icon"
+        android:paddingBottom="@dimen/space_sign_in_to_icon"
+        android:textAlignment="center" />
 
     <EditText
-        android:inputType="textPassword"
-        android:paddingRight="@dimen/space_sign_in_to_icon"
-        android:paddingLeft="@dimen/space_sign_in_to_icon"
-        android:paddingBottom="@dimen/space_sign_in_to_icon"
-        android:paddingTop="@dimen/space_sign_in_to_icon"
-        android:textAlignment="center"
-        android:id="@+id/edit2"
         android:hint="@string/pass_hint"
+        android:id="@+id/edit2"
+        android:layout_width="@dimen/edt_width"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/edt_space"
         android:background="@drawable/etext_shape"
-        android:layout_width="@dimen/edt_width"
-        android:layout_height="wrap_content"/>
+        android:autofillHints="@string/pass_hint"
+        android:inputType="textPassword"
+        android:paddingLeft="@dimen/space_sign_in_to_icon"
+        android:paddingTop="@dimen/space_sign_in_to_icon"
+        android:paddingRight="@dimen/space_sign_in_to_icon"
+        android:paddingBottom="@dimen/space_sign_in_to_icon"
+        android:textAlignment="center" />
 
     <Button
-        android:paddingRight="@dimen/space_sign_in_to_icon"
-        android:paddingLeft="@dimen/space_sign_in_to_icon"
-        android:paddingBottom="@dimen/space_sign_in_to_icon"
-        android:paddingTop="@dimen/space_sign_in_to_icon"
         android:id="@+id/btn_signin"
-        android:textColor="@color/btn_backg"
-        android:background="@drawable/button_shape"
-        android:layout_marginTop="@dimen/btn_to_edt"
-        android:text="@string/btn_sign_in"
         android:layout_width="@dimen/edt_width"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/btn_to_edt"
+        android:background="@drawable/button_shape"
+        android:paddingLeft="@dimen/space_sign_in_to_icon"
+        android:paddingTop="@dimen/space_sign_in_to_icon"
+        android:paddingRight="@dimen/space_sign_in_to_icon"
+        android:paddingBottom="@dimen/space_sign_in_to_icon"
+        android:text="@string/btn_sign_in"
+        android:textColor="@color/btn_backg" />
 
     <com.google.android.gms.common.SignInButton
-        android:background="@drawable/gg_btn_shape"
         android:id="@+id/btn_gg"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </com.google.android.gms.common.SignInButton>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/gg_btn_shape"></com.google.android.gms.common.SignInButton>
 
 </LinearLayout>
