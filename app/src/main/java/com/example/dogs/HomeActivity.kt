@@ -2,8 +2,13 @@ package com.example.dogs
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.view.ViewPager
 import android.util.Log
-
+import android.widget.Toast
+import com.example.dogs.fragment.BlankFragment
 
 
 import kotlinx.android.synthetic.main.activity_home.*
@@ -30,17 +35,11 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        initView()
         getDogTypeList()
-    }
-
-    private fun initView() {
-        view_pager.adapter = MyAdapter(supportFragmentManager)
         tab_layout.setupWithViewPager(view_pager)
     }
 
     fun convertToDogType(response : String){
-
         try {
             //getting the whole json object from the response
             val obj = JSONObject(response)
@@ -53,34 +52,23 @@ class HomeActivity : AppCompatActivity() {
                     val key = keys.next()
                     dogList.add(key)
                 }
-//                val intent = Intent(applicationContext,MyAdapter::class.java)
-//                    .putStringArrayListExtra("myList",dogList)
-//                startActivity(intent)
 
-
+                val adapter = Adapter(supportFragmentManager)
                 for (dog in dogList) {
                     Log.d("DOG", dog + "\n")
+                    val f = BlankFragment.newInstance("Dogs")
+                    adapter.addFragmnet(f,"$dog")
                 }
-
-//                val arrayAdapter = ArrayAdapter<String>(
-//                    this,
-//                    android.R.layout.simple_list_item_1,
-//                    dogList
-//                )
-//                list_view.setAdapter(arrayAdapter)
-
+                view_pager.adapter = adapter
 
 
             } else {
                 Log.d("TAG", "Get JSON Failed")
             }
-
         } catch (e: JSONException) {
             e.printStackTrace()
         }
-
     }
-
     fun getDogTypeList(){
         var call = api.getDogType()
 
@@ -102,9 +90,7 @@ class HomeActivity : AppCompatActivity() {
                     }
                 }
             }
-
             override fun onFailure(call: Call<String>, t: Throwable) {
-
             }
         })
     }
