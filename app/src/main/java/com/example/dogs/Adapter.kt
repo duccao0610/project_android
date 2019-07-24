@@ -3,6 +3,7 @@ package com.example.dogs
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.util.Log
 
 
 class Adapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
@@ -14,6 +15,7 @@ class Adapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
     override fun getPageTitle(position: Int): CharSequence? = titles.get(position)
     fun addFragmnet(fragment: Fragment, title: String) {
         fragments.add(fragment)
+
         titles.add(title)
     }
 }
