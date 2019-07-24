@@ -11,6 +11,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import kotlinx.android.synthetic.main.activity_sign_in.*
+
+
+
 class SignInActivity : AppCompatActivity(),GoogleApiClient.OnConnectionFailedListener {
     override fun onConnectionFailed(connectionResult: ConnectionResult) {
         Log.d("duc","onConnectionFailed" + connectionResult)
@@ -39,20 +42,41 @@ class SignInActivity : AppCompatActivity(),GoogleApiClient.OnConnectionFailedLis
             .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
             .build()
 
+
+
         btn_gg.setOnClickListener(View.OnClickListener {
             var signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
             startActivityForResult(signInIntent,RC_SIGN_IN)
         })
 
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == RC_SIGN_IN){
             val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
             updateUI(result.isSuccess)
+            //
+            //get username,email,avatar
+            val acct = result.signInAccount
+            Log.d("DisplayInfo",  "Name : " + acct?.displayName)
+            Log.d("DisplayInfo","Email : " + acct?.email)
+            Log.d("DisplayInfo","AvatarURL : " + acct?.photoUrl)
+            val userName = acct?.displayName.toString()
+            val userEmail = acct?.email.toString()
+            val userAvatar = acct?.photoUrl.toString()
+
+            //use intent to pass data to HomeActivity
+            val intent = Intent(this,HomeActivity::class.java)
+            intent.putExtra("Name",userName)
+            intent.putExtra("Email",userEmail)
+            intent.putExtra("Avatar",userAvatar)
+            startActivity(intent)
+
         }
     }
+
+
+
 
     private fun updateUI(isLogIn: Boolean) {
         if(isLogIn){

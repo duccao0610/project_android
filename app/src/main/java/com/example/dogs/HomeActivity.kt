@@ -2,24 +2,16 @@ package com.example.dogs
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
-import android.support.transition.FragmentTransitionSupport
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.GravityCompat
-import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
 import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.widget.Toast
 import com.example.dogs.fragment.BlankFragment
+import com.squareup.picasso.Picasso
 
 
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.drawer_header.*
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -40,11 +32,13 @@ class HomeActivity : AppCompatActivity() {
 
     var dogList : ArrayList<String> = ArrayList()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
         setUpDrawerLayout()
+        handleUserInfo()
         getDogTypeList()
 
         tab_layout.setupWithViewPager(view_pager)
@@ -173,12 +167,27 @@ class HomeActivity : AppCompatActivity() {
         navigation_view.menu.add(item)
     }
 
-//    fun setUpNavigationView(item:Int){
+    fun handleUserInfo(){
+        var strUser = intent.getStringExtra("Name")
+        var strEmail = intent.getStringExtra("Email")
+        var strAvaterUrl = intent.getStringExtra("Avatar")
+        GG_name.setText(strUser)
+        GG_email.setText(strEmail)
+        Picasso.with(getApplicationContext()).load(strAvaterUrl).into(avatar);
+
+    }
+
+//    fun setUpNavigationView(){
 //        navigation_view.setNavigationItemSelectedListener {
-//            when(it.itemId){
-//                    supportFragmentManager.beginTransaction().replace(R.id)
-//            }
+//            val fragment: Fragment = BlankFragment()
+//            val transaction = supportFragmentManager.beginTransaction()
+//            transaction.replace(R.id.view_pager, fragment)
+//            transaction.addToBackStack("transaction_name")
+//// Commit the transaction
+//            transaction.commit()
+//            true
 //        }
+//
 //    }
 
 
