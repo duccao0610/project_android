@@ -18,4 +18,7 @@ class Adapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
 
         titles.add(title)
     }
+
+
+
 }

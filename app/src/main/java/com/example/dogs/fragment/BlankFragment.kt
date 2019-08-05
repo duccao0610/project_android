@@ -10,25 +10,32 @@ import android.view.ViewGroup
 import android.widget.Toast
 
 import com.example.dogs.R
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_blank.*
 import kotlinx.android.synthetic.main.fragment_blank.view.*
+import kotlinx.android.synthetic.main.fragment_blank.view.image_test
 
 
 class BlankFragment : Fragment() {
 
     var text = ""
+    var link = ""
     companion object{
-        fun newInstance(text: String):BlankFragment{
+        fun newInstance(text: String,link:String):BlankFragment{
             val fragment = BlankFragment()
             val bundle = Bundle()
             bundle.putString("Text",text)
+            bundle.putString("Link",link)
             fragment.arguments = bundle
             return fragment
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         text = arguments?.get("Text").toString()
+        link = arguments?.get("Link").toString()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,6 +44,9 @@ class BlankFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.text_blank.setText(text)
+        view.text_link.setText(link)
+        val texxt = text.toUpperCase()
+        view.text_blank.setText(texxt)
+//        view.image_test.setImageResource(R.drawable._search_white)
     }
 }

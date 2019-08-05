@@ -10,7 +10,19 @@
         android:gravity="center"
         android:id="@+id/text_blank"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="hello_blank_fragment" />
+    <TextView
+        android:id="@+id/text_link"
+        android:gravity="center"
+        android:text="link"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/image_test"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
 
 </FrameLayout>

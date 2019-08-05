@@ -2,6 +2,7 @@ package com.example.dogs
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
@@ -12,6 +13,7 @@ import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.drawer_header.*
+import kotlinx.android.synthetic.main.fragment_blank.*
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -19,6 +21,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
+
+
+
+
+
 
 
 class HomeActivity : AppCompatActivity() {
@@ -31,6 +38,8 @@ class HomeActivity : AppCompatActivity() {
     var api = retrofit.create(DogApi::class.java)
 
     var dogList : ArrayList<String> = ArrayList()
+
+    var linkGG:String = "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwickZq60NvjAhWbad4KHTBLCs0QjRx6BAgBEAU&url=https%3A%2F%2Fwww.youtube.com%2FGoogle&psig=AOvVaw1gO2Dd7qUvhJXw44NnQkTZ&ust=1564541241070337"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,15 +84,22 @@ class HomeActivity : AppCompatActivity() {
                 Log.d("SIZE","${dogList.size}")
 
                 val adapter = Adapter(supportFragmentManager)
-                for (dog in dogList) {
-                    Log.d("DOG", dog + "\n")
-                    addMenuItem(dog)
-                    val f = BlankFragment.newInstance("$dog")
-                    adapter.addFragmnet(f,"$dog")
+//                for (dog in dogList) {
+////                    Log.d("DOG", dog + "\n")
+////                    addMenuItem(dog)
+////                    val f = BlankFragment.newInstance("$dog","$linkGG")
+////                    adapter.addFragmnet(f,"$dog")
+////                    getImageList()
+////                }
+                for (dog1 in dogList.indexOf(dogList[0])  until dogList.indexOf(dogList[10])) {
+                    Log.d("dog1", "${dogList[dog1]}" + "\n")
+                    addMenuItem(dogList[dog1])
+                    val f = BlankFragment.newInstance("${dogList[dog1]}","$linkGG")
+                    adapter.addFragmnet(f,"${dogList[dog1]}")
                     getImageList()
+//                    handleNavView(dog1)
                 }
                 view_pager.adapter = adapter
-
 
             } else {
                 Log.d("TAG", "Get JSON Failed")
@@ -120,13 +136,27 @@ class HomeActivity : AppCompatActivity() {
 
     var api1 = retrofit.create(ImageApi::class.java)
 
+    var urlList : ArrayList<String> = ArrayList()
     fun convertToImage(response: String){
         try {
             val obj = JSONObject(response)
             if (obj.optString("status").equals("success")){
                 val data = obj.getJSONArray("message")
-                val list = data.toString()
-                Log.d("LINKIMAGE",  list+ "\n")
+                var i = 0
+//                var imgUrlList : ArrayList<String> = ArrayList()
+                val count = data.length()
+                while (i < count) {
+                    try {
+                        urlList.add(data[i].toString())
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                    i++
+                }
+
+//                Picasso.with(getApplicationContext()).load(imgUrlList[1]).into(image_test)
+                Log.d("SIZE","${urlList.size}")
+                Log.d("LINK1",urlList.random())
             }
 
         }catch (e:JSONException){
@@ -170,10 +200,10 @@ class HomeActivity : AppCompatActivity() {
     fun handleUserInfo(){
         var strUser = intent.getStringExtra("Name")
         var strEmail = intent.getStringExtra("Email")
-        var strAvaterUrl = intent.getStringExtra("Avatar")
+        var strAvatarUrl = intent.getStringExtra("Avatar")
         GG_name.setText(strUser)
         GG_email.setText(strEmail)
-        Picasso.with(getApplicationContext()).load(strAvaterUrl).into(avatar);
+        Picasso.with(getApplicationContext()).load(strAvatarUrl).into(avatar);
 
     }
 
@@ -189,6 +219,17 @@ class HomeActivity : AppCompatActivity() {
 //        }
 //
 //    }
-
+//    fun handleNavView(id:Int){
+//        navigation_view.setNavigationItemSelectedListener {
+//            var selectedFragment: Fragment = BlankFragment()
+//            when (it.itemId) {
+//                id -> selectedFragment = A()
+//            }
+//            val transaction = fragmentManager.beginTransaction()
+//            transaction.replace(R.id.frame_layout, selectedFragment)
+//            transaction.commit()
+//            return@setOnNavigationItemSelectedListener true
+//        }
+//    }
 
 }
