@@ -3,17 +3,18 @@ package com.example.dogs
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
 import android.view.Menu
+import android.widget.Toast
 import com.example.dogs.fragment.BlankFragment
 import com.squareup.picasso.Picasso
 
 
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.drawer_header.*
-import kotlinx.android.synthetic.main.fragment_blank.*
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -28,7 +29,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity()  {
 
     var retrofit = Retrofit.Builder()
         .baseUrl("https://dog.ceo/api/")
@@ -49,7 +50,7 @@ class HomeActivity : AppCompatActivity() {
         setUpDrawerLayout()
         handleUserInfo()
         getDogTypeList()
-
+        handleNavView()
         tab_layout.setupWithViewPager(view_pager)
     }
 
@@ -75,7 +76,7 @@ class HomeActivity : AppCompatActivity() {
             if (obj.optString("status").equals("success")) {
 
                 val dataArray = obj.getJSONObject("message")
-                var keys : Iterator<String>  = dataArray.keys()
+                val keys : Iterator<String>  = dataArray.keys()
 
                 while (keys.hasNext()) {
                     val key = keys.next()
@@ -91,13 +92,16 @@ class HomeActivity : AppCompatActivity() {
 ////                    adapter.addFragmnet(f,"$dog")
 ////                    getImageList()
 ////                }
-                for (dog1 in dogList.indexOf(dogList[0])  until dogList.indexOf(dogList[10])) {
-                    Log.d("dog1", "${dogList[dog1]}" + "\n")
-                    addMenuItem(dogList[dog1])
+                for (dog1 in dogList.indexOf(dogList[0])  until dogList.indexOf(dogList[5])) {
+                    Log.d("dog1","${dogList[dog1]}" + "\n")
+                    addMenuItem(dogList[dog1],dog1)
                     val f = BlankFragment.newInstance("${dogList[dog1]}","$linkGG")
+//                    val fragmentManager = supportFragmentManager
+//                    val fragmentTransaction = fragmentManager.beginTransaction()
+//                    fragmentTransaction.add(R.id.view_pager,f,"${dogList[dog1]}")
+//                    fragmentTransaction.commit()
                     adapter.addFragmnet(f,"${dogList[dog1]}")
                     getImageList()
-//                    handleNavView(dog1)
                 }
                 view_pager.adapter = adapter
 
@@ -109,7 +113,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
     fun getDogTypeList(){
-        var call = api.getDogType()
+        val call = api.getDogType()
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -154,7 +158,7 @@ class HomeActivity : AppCompatActivity() {
                     i++
                 }
 
-//                Picasso.with(getApplicationContext()).load(imgUrlList[1]).into(image_test)
+//                Picasso.with(getApplicat,ionContext()).load(imgUrlList[1]).into(image_test)
                 Log.d("SIZE","${urlList.size}")
                 Log.d("LINK1",urlList.random())
             }
@@ -165,7 +169,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun getImageList(){
-        var call = api1.getImage()
+        val call = api1.getImage()
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 Log.i("Responsestring", response.body().toString())
@@ -193,43 +197,64 @@ class HomeActivity : AppCompatActivity() {
         return true
     }
 
-    fun addMenuItem(item:String){
-        navigation_view.menu.add(item)
+    fun addMenuItem(item:String,id:Int){
+        navigation_view.menu.add(1,id,id,item)
+        val idea = navigation_view.menu.getItem(id).itemId
+        Log.d("ID","$idea")
+
     }
 
     fun handleUserInfo(){
-        var strUser = intent.getStringExtra("Name")
-        var strEmail = intent.getStringExtra("Email")
-        var strAvatarUrl = intent.getStringExtra("Avatar")
+        val strUser = intent.getStringExtra("Name")
+        val strEmail = intent.getStringExtra("Email")
+        val strAvatarUrl = intent.getStringExtra("Avatar")
         GG_name.setText(strUser)
         GG_email.setText(strEmail)
-        Picasso.with(getApplicationContext()).load(strAvatarUrl).into(avatar);
+        Picasso.with(getApplicationContext()).load(strAvatarUrl).into(avatar_image)
 
     }
 
-//    fun setUpNavigationView(){
-//        navigation_view.setNavigationItemSelectedListener {
-//            val fragment: Fragment = BlankFragment()
-//            val transaction = supportFragmentManager.beginTransaction()
-//            transaction.replace(R.id.view_pager, fragment)
-//            transaction.addToBackStack("transaction_name")
-//// Commit the transaction
-//            transaction.commit()
-//            true
-//        }
-//
-//    }
-//    fun handleNavView(id:Int){
-//        navigation_view.setNavigationItemSelectedListener {
-//            var selectedFragment: Fragment = BlankFragment()
-//            when (it.itemId) {
-//                id -> selectedFragment = A()
-//            }
-//            val transaction = fragmentManager.beginTransaction()
-//            transaction.replace(R.id.frame_layout, selectedFragment)
-//            transaction.commit()
-//            return@setOnNavigationItemSelectedListener true
-//        }
-//    }
+    fun handleNavView(){
+        navigation_view.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                0-> {
+                    // handle click
+                    Toast.makeText(applicationContext,"Item0 selected",Toast.LENGTH_SHORT).show()
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+                1-> {
+                    // handle click
+                    Toast.makeText(applicationContext,"Item1 selected",Toast.LENGTH_SHORT).show()
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+                2-> {
+                    // handle click
+                    Toast.makeText(applicationContext,"Item2 selected",Toast.LENGTH_SHORT).show()
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+                3-> {
+                    // handle click
+                    Toast.makeText(applicationContext,"Item3 selected",Toast.LENGTH_SHORT).show()
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+                4-> {
+                    // handle click
+                    Toast.makeText(applicationContext,"Item4 selected",Toast.LENGTH_SHORT).show()
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+    }
+
+
+
 
 }

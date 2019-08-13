@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_blank.view.image_test
 
 
 class BlankFragment : Fragment() {
-
+    var id = ""
     var text = ""
     var link = ""
     companion object{
@@ -48,5 +48,6 @@ class BlankFragment : Fragment() {
         val texxt = text.toUpperCase()
         view.text_blank.setText(texxt)
 //        view.image_test.setImageResource(R.drawable._search_white)
+        Picasso.with(getContext()).load(link).into(image_test)
     }
 }

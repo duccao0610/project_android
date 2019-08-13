@@ -15,7 +15,7 @@
         app:civ_shadow_radius="10"
         app:civ_shadow_color="#8BC34A"
         app:civ_border_color="#EEEEEE"
-        android:id="@+id/avatar"
+        android:id="@+id/avatar_image"
         android:layout_width="100dp"
         android:layout_height="100dp" />
     <TextView
