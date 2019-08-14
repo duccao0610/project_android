@@ -1,6 +1,7 @@
 package com.example.dogs.fragment
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,6 +15,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_blank.*
 import kotlinx.android.synthetic.main.fragment_blank.view.*
 import kotlinx.android.synthetic.main.fragment_blank.view.image_test
+import java.net.URL
 
 
 class BlankFragment : Fragment() {
@@ -36,9 +38,11 @@ class BlankFragment : Fragment() {
         super.onCreate(savedInstanceState)
         text = arguments?.get("Text").toString()
         link = arguments?.get("Link").toString()
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+//        Picasso.with(view?.context).load(link).into(image_test)
         return inflater.inflate(R.layout.fragment_blank,container,false)
     }
 
@@ -47,7 +51,8 @@ class BlankFragment : Fragment() {
         view.text_link.setText(link)
         val texxt = text.toUpperCase()
         view.text_blank.setText(texxt)
+
 //        view.image_test.setImageResource(R.drawable._search_white)
-        Picasso.with(getContext()).load(link).into(image_test)
+//        Picasso.with(view.context).load(link).into(image_test)
     }
 }

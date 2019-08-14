@@ -18,6 +18,9 @@ class Adapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
         titles.add(title)
     }
 
+    override fun getItemPosition(`object`: Any): Int {
+        return super.getItemPosition(`object`)
+    }
 
 
 }

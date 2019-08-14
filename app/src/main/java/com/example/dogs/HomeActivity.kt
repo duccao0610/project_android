@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.drawer_header.*
+import kotlinx.android.synthetic.main.fragment_blank.*
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -93,14 +94,10 @@ class HomeActivity : AppCompatActivity()  {
 ////                    getImageList()
 ////                }
                 for (dog1 in dogList.indexOf(dogList[0])  until dogList.indexOf(dogList[5])) {
-                    Log.d("dog1","${dogList[dog1]}" + "\n")
+                    Log.d("dog1", dogList[dog1] + "\n")
                     addMenuItem(dogList[dog1],dog1)
-                    val f = BlankFragment.newInstance("${dogList[dog1]}","$linkGG")
-//                    val fragmentManager = supportFragmentManager
-//                    val fragmentTransaction = fragmentManager.beginTransaction()
-//                    fragmentTransaction.add(R.id.view_pager,f,"${dogList[dog1]}")
-//                    fragmentTransaction.commit()
-                    adapter.addFragmnet(f,"${dogList[dog1]}")
+                    val f = BlankFragment.newInstance(dogList[dog1], linkGG)
+                    adapter.addFragmnet(f, dogList[dog1])
                     getImageList()
                 }
                 view_pager.adapter = adapter
@@ -157,8 +154,7 @@ class HomeActivity : AppCompatActivity()  {
                     }
                     i++
                 }
-
-//                Picasso.with(getApplicat,ionContext()).load(imgUrlList[1]).into(image_test)
+                Picasso.with(getApplicationContext()).load(urlList[0]).into(image_test)
                 Log.d("SIZE","${urlList.size}")
                 Log.d("LINK1",urlList.random())
             }
