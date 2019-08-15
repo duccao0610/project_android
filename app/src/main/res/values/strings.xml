@@ -30,4 +30,5 @@
     <string name="drawerClose" translatable="false">Close</string>
     <string name="helloFragment" translatable="false">hello_blank_fragment</string>
     <string name="contentDesc" translatable="false">Image</string>
+    <string name="action_settings" translatable="false">setting</string>
 </resources>

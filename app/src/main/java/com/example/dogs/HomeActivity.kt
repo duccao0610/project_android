@@ -4,10 +4,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import com.example.dogs.fragment.BlankFragment
 import com.squareup.picasso.Picasso
@@ -23,15 +25,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
-
-
-
-
-
+import android.content.Intent
+import android.view.View
 
 
 class HomeActivity : AppCompatActivity()  {
-
+    var PICK_IMAGE_MULTIPLE = 1
     var retrofit = Retrofit.Builder()
         .baseUrl("https://dog.ceo/api/")
         .addConverterFactory(ScalarsConverterFactory.create())
@@ -54,6 +53,7 @@ class HomeActivity : AppCompatActivity()  {
         handleNavView()
         tab_layout.setupWithViewPager(view_pager)
     }
+
 
      private fun setUpDrawerLayout() {
         val toggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawerOpen,R.string.drawerClose)
@@ -101,7 +101,6 @@ class HomeActivity : AppCompatActivity()  {
                     getImageList()
                 }
                 view_pager.adapter = adapter
-
             } else {
                 Log.d("TAG", "Get JSON Failed")
             }
@@ -111,7 +110,6 @@ class HomeActivity : AppCompatActivity()  {
     }
     fun getDogTypeList(){
         val call = api.getDogType()
-
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 Log.i("Responsestring", response.body().toString())
@@ -154,11 +152,10 @@ class HomeActivity : AppCompatActivity()  {
                     }
                     i++
                 }
-                Picasso.with(getApplicationContext()).load(urlList[0]).into(image_test)
+//                Picasso.with(getApplicationContext()).load(urlList[0]).into(image_test)
                 Log.d("SIZE","${urlList.size}")
                 Log.d("LINK1",urlList.random())
             }
-
         }catch (e:JSONException){
             e.printStackTrace()
         }
@@ -193,11 +190,12 @@ class HomeActivity : AppCompatActivity()  {
         return true
     }
 
+
     fun addMenuItem(item:String,id:Int){
-        navigation_view.menu.add(1,id,id,item)
+        val menuItem = navigation_view.menu.add(1,id,id,item.toUpperCase())
+        menuItem.icon = ContextCompat.getDrawable(this,R.drawable.dog_icon)
         val idea = navigation_view.menu.getItem(id).itemId
         Log.d("ID","$idea")
-
     }
 
     fun handleUserInfo(){
@@ -207,37 +205,42 @@ class HomeActivity : AppCompatActivity()  {
         GG_name.setText(strUser)
         GG_email.setText(strEmail)
         Picasso.with(getApplicationContext()).load(strAvatarUrl).into(avatar_image)
-
     }
+
 
     fun handleNavView(){
         navigation_view.setNavigationItemSelectedListener {
             when (it.itemId) {
                 0-> {
+                    view_pager.currentItem = 0
                     // handle click
                     Toast.makeText(applicationContext,"Item0 selected",Toast.LENGTH_SHORT).show()
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
                 1-> {
+                    view_pager.currentItem = 1
                     // handle click
                     Toast.makeText(applicationContext,"Item1 selected",Toast.LENGTH_SHORT).show()
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
                 2-> {
+                    view_pager.currentItem = 2
                     // handle click
                     Toast.makeText(applicationContext,"Item2 selected",Toast.LENGTH_SHORT).show()
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
                 3-> {
+                    view_pager.currentItem = 3
                     // handle click
                     Toast.makeText(applicationContext,"Item3 selected",Toast.LENGTH_SHORT).show()
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
                 4-> {
+                    view_pager.currentItem = 4
                     // handle click
                     Toast.makeText(applicationContext,"Item4 selected",Toast.LENGTH_SHORT).show()
                     drawerLayout.closeDrawer(GravityCompat.START)
@@ -247,10 +250,7 @@ class HomeActivity : AppCompatActivity()  {
                 else -> false
             }
         }
-
     }
-
-
 
 
 }

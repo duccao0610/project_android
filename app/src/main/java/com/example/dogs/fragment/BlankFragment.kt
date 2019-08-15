@@ -12,10 +12,8 @@ import android.widget.Toast
 
 import com.example.dogs.R
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_blank.*
 import kotlinx.android.synthetic.main.fragment_blank.view.*
-import kotlinx.android.synthetic.main.fragment_blank.view.image_test
-import java.net.URL
+
 
 
 class BlankFragment : Fragment() {
